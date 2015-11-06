@@ -1,6 +1,6 @@
 <?php
 
-	$name = array( 'a', 'b', 'c' );
+	$name = ['a', 'b', 'c'];
 	
 	print_r( $var );
 
