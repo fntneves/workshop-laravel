@@ -11,4 +11,6 @@
 |
 */
 
-Route::resource('restaurants', 'RestaurantsController');
+Route::resource('restaurants', 'RestaurantsController',
+    ['only' => 'index'] // Consider only index method of this controller
+);
