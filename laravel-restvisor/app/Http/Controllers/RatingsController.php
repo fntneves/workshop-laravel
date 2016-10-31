@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Restaurant;
+use App\Rating;
+use App\Http\Requests\CreateRatingRequest;
 
 class RatingsController extends Controller
 {
@@ -28,8 +30,24 @@ class RatingsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $restaurantId)
+    public function store(CreateRatingRequest $request, $restaurantId)
     {
-        //
+        // Form is valid at this point due to CreateRatingRequest.
+
+        $restaurant = Restaurant::findOrFail($restaurantId);
+
+        $rating = new Rating;
+        $rating->score = $request->input('value');
+        $rating->comment = $request->input('comment');
+
+        // Associate rating with the restaurant.
+        // Now, rating belongs to the restaurant
+        $rating->restaurant()->associate($restaurant);
+
+        // Save to database
+        $rating->save();
+
+        return $rating;
+
     }
 }

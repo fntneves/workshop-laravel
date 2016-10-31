@@ -13,10 +13,6 @@
 
 <form method="POST" action="{{ route('ratings.store', ['restaurantId' => $restaurant->id]) }}">
     {!! csrf_field() !!}
-    <div>
-        Name
-        <input type="text" name="username" value="{{ old('name') }}">
-    </div>
 
     <div>
         Comment
