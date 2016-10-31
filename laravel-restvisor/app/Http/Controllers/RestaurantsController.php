@@ -14,6 +14,8 @@ class RestaurantsController extends Controller
      */
     public function index()
     {
-        return Restaurant::all();
+        // Include ratings in each restaurant. with() includes related models
+        // We must use get() here, because with() returns a Query Builder
+        return Restaurant::with('ratings')->get();
     }
 }
